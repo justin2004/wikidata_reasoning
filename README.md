@@ -38,3 +38,8 @@ then you should find output.csv.
 edit the sparql queries and save them and see the results propogate to output.csv.
 
 read `Makefile` to see what is going on.
+
+
+### notes
+
+although this repo uses Wikidata it could be adapted to other SPARQL endpoints.
