@@ -1,14 +1,14 @@
-default: out.csv
+default: output.csv
 
 ontology.ttl: ontology-query.sparql ontology-query.sparql
 	rsparql --results=graph --service=https://query.wikidata.org/sparql --query=ontology-query.sparql > ontology.ttl
 
 # initial selection from remote triplestore
-wd.ttl: ontology.ttl query3.sparql
-	rsparql --results=graph --service=https://query.wikidata.org/sparql --query=query3.sparql > wd.ttl 
+over.ttl: ontology.ttl over-query.sparql
+	rsparql --results=graph --service=https://query.wikidata.org/sparql --query=over-query.sparql > over.ttl 
    
-derivations.ttl: wd.ttl ontology.ttl
-	infer --rdfs=ontology.ttl wd.ttl > derivations.ttl 
+over_and_derivations.ttl: over.ttl ontology.ttl
+	infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
  
-out.csv: derivations.ttl query2.sparql
-	sparql --results=csv --data=derivations.ttl --query=query2.sparql  > out.csv
+output.csv: over_and_derivations.ttl query.sparql
+	sparql --results=csv --data=over_and_derivations.ttl --query=query.sparql  > output.csv

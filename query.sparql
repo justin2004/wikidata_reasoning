@@ -8,7 +8,7 @@ PREFIX pq:       <http://www.wikidata.org/prop/qualifier/> # Links qualifier to 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bd: <http://www.bigdata.com/rdf#>
 prefix sch: <https://schema.org/>
-select  *      {
+select * {
  ?s ?p ?o .
 }
 
