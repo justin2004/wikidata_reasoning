@@ -9,7 +9,7 @@ default: output.csv
 #          into useful Tbox triples but you could also just make your 
 #          own ontology.ttl file by some other means.
 #
-ontology.ttl: ontology-query.sparql ontology-query.sparql
+ontology.ttl: ontology-query.sparql
 	rsparql --results=graph \
 	   	    --service=$(ENDPOINT) \
 	   	    --query=ontology-query.sparql > ontology.ttl
@@ -32,7 +32,7 @@ over.ttl: ontology.ttl over-query.sparql
 #    - ontology.ttl 
 # to get all derivations and add those derived triples to the collection
 #
-over_and_derivations.ttl: over.ttl ontology.ttl
+over_and_derivations.ttl: over.ttl
 	infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
 	@echo exit code $$?
  
