@@ -13,6 +13,7 @@ ontology.ttl: ontology-query.sparql ontology-query.sparql
 	rsparql --results=graph \
 	   	    --service=$(ENDPOINT) \
 	   	    --query=ontology-query.sparql > ontology.ttl
+	@echo $$?
 
 
 # then make an initial selection of triples from remote sparql endpoint.
@@ -23,6 +24,7 @@ over.ttl: ontology.ttl over-query.sparql
 	rsparql --results=graph \
    	        --service=$(ENDPOINT) \
    	        --query=over-query.sparql > over.ttl 
+	@echo $$?
    
 # now use:
 #    - the rdfs reasoner
@@ -32,6 +34,7 @@ over.ttl: ontology.ttl over-query.sparql
 #
 over_and_derivations.ttl: over.ttl ontology.ttl
 	infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
+	@echo $$?
  
 # finally run the sparql query over all the triples.
 # i like csv output so i can look at the results in visidata but
@@ -41,3 +44,15 @@ output.csv: over_and_derivations.ttl query.sparql
 	sparql --results=csv \
 	   	   --data=over_and_derivations.ttl \
 	   	   --query=query.sparql > output.csv
+	@echo $$?
+
+
+
+# watch for files in this directory to change and when any of them do run
+# `make`
+#
+# this will stay in the foreground (until you ctrl-c it) so you can update 
+# query files and hot-load the results
+#
+live:
+	ls -1 . | entr make
