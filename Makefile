@@ -8,24 +8,35 @@ default: output.csv
 #          Wikidata happens to have some triples that are easy to turn 
 #          into useful Tbox triples but you could also just make your 
 #          own ontology.ttl file by some other means.
+#
 ontology.ttl: ontology-query.sparql ontology-query.sparql
 	rsparql --results=graph \
 	   	    --service=$(ENDPOINT) \
 	   	    --query=ontology-query.sparql > ontology.ttl
 
-# then make an initial selection of triples from remote sparql endpoint
+
+# then make an initial selection of triples from remote sparql endpoint.
+# put these in the over.ttl file because these are the triples we will
+# reason over.
+#
 over.ttl: ontology.ttl over-query.sparql
 	rsparql --results=graph \
    	        --service=$(ENDPOINT) \
    	        --query=over-query.sparql > over.ttl 
    
-# now use the rdfs reasoner to get all derivations and add those derived triples
-# to the collection
+# now use:
+#    - the rdfs reasoner
+#    - over.ttl
+#    - ontology.ttl 
+# to get all derivations and add those derived triples to the collection
+#
 over_and_derivations.ttl: over.ttl ontology.ttl
 	infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
  
-# finally run the sparql query over the triples that came from the remote sparql 
-# enpoints and the triples that were inferred
+# finally run the sparql query over all the triples.
+# i like csv output so i can look at the results in visidata but
+# you could also request json, etc.
+#
 output.csv: over_and_derivations.ttl query.sparql
 	sparql --results=csv \
 	   	   --data=over_and_derivations.ttl \
