@@ -24,4 +24,4 @@ RUN wget 'https://apache.osuosl.org/jena/binaries/apache-jena-3.17.0.tar.gz' && 
 RUN echo 'declare -x PATH=$PATH:/home/containeruser/apache-jena-3.17.0/bin/' >> /home/containeruser/.bashrc
 WORKDIR /mnt
 
-CMD make live
+CMD bash -c 'source ~/.bashrc && make live'
