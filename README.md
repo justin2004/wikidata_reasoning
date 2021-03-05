@@ -23,6 +23,8 @@ build this docker image:
 docker build --build-arg=uid=`id -u` --build-arg=gid=`id -g` -t justin2004/wikidata_reasoning .
 ```
 
+start the docker container:
+
 ```
 docker run --rm -it -v `pwd`:/mnt justin2004/wikidata_reasoning
 ```
