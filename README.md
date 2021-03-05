@@ -37,6 +37,17 @@ then you should find output.csv.
 
 edit the sparql queries and save them and see the results propogate to output.csv.
 
+e.g.
+see this row in output.csv
+```
+s,p,o
+http://www.wikidata.org/entity/Q76,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.wikidata.org/entity/Q5
+```
+which says that:
+president_obama rdf:type human
+
+which is something that Wikidata does not say explictly but which is deriveable.
+
 read `Makefile` to see what is going on.
 
 
