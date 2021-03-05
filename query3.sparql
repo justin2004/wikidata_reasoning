@@ -1,0 +1,17 @@
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd:       <http://www.wikidata.org/entity/>         # Wikibase entity - item or property.
+PREFIX wdt:      <http://www.wikidata.org/prop/direct/>    # Truthy assertions about the data, links entity to value directly.
+PREFIX p:        <http://www.wikidata.org/prop/>           # Links entity to statement
+PREFIX ps:       <http://www.wikidata.org/prop/statement/> # Links value to statement
+PREFIX pq:       <http://www.wikidata.org/prop/qualifier/> # Links qualifier to statement node
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+prefix sch: <https://schema.org/>
+construct { ?s ?p ?o . ?o ?p1 ?o1 }        {
+ ?s ?p ?o .
+ filter(?s = wd:Q76  ) .
+ ?o ?p1 ?o1 .
+}
+limit 90
+
