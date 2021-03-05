@@ -3,10 +3,12 @@
 
 ## what
 
+[Semantic reasoning](https://en.wikipedia.org/wiki/Semantic_reasoner) over [Wikidata](https://www.wikidata.org/).
+
 
 ## why
 
-Wikidata doesn't do inference.
+Wikidata doesn't do reasoning/inference.
 
 
 ## how
@@ -28,6 +30,9 @@ docker run --rm -it -v `pwd`:/mnt justin2004/wikidata_reasoning
 
 ### usage
 
-then you should find output.csv
 
-edit the sparql queries and save them and see the results propogate to output.csv
+then you should find output.csv.
+
+edit the sparql queries and save them and see the results propogate to output.csv.
+
+read `Makefile` to see what is going on.
