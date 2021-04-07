@@ -56,3 +56,14 @@ read `Makefile` to see what is going on.
 Although this repo uses Wikidata it could be adapted to other SPARQL endpoints.
 
 Only RDFS reasoning is used currently but this could be extended to include OWL reasoning.
+
+
+### side benefit
+This particular set of queries I think help address the criticism of Wikidata's Q numbers and P numbers.
+
+> Wikidata is essentially a giant obfuscated graph of nodes and edges. You have no idea of the semantic meaning of an edge without dereferencing the edge via a query or the wiki. 
+
+https://datalanguage.com/blog/wikidata-q41483
+
+I think this reasoning helps because wdt:P31 (which people consider to be an obfsucated predicate) is rendered as rdf:type.
+Look in `output.csv` to see other non P number predicates.
