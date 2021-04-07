@@ -53,4 +53,6 @@ read `Makefile` to see what is going on.
 
 ### notes
 
-although this repo uses Wikidata it could be adapted to other SPARQL endpoints.
+Although this repo uses Wikidata it could be adapted to other SPARQL endpoints.
+
+Only RDFS reasoning is used currently but this could be extended to include OWL reasoning.
