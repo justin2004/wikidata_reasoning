@@ -10,7 +10,7 @@ default: output.csv
 #          own ontology.ttl file by some other means.
 #
 ontology.ttl: ontology-query.sparql
-	@echo 0 | figlet
+	@echo '0/3' | figlet
 	@echo rebuilding the ontology file...
 	rsparql --results=graph \
 	   	    --service=$(ENDPOINT) \
@@ -23,7 +23,7 @@ ontology.ttl: ontology-query.sparql
 # reason over.
 #
 over.ttl: ontology.ttl over-query.sparql
-	@echo 1 | figlet
+	@echo '1/3' | figlet
 	@echo getting the initial selection of triples from the remote endpoint...
 	rsparql --results=graph \
    	        --service=$(ENDPOINT) \
@@ -37,7 +37,7 @@ over.ttl: ontology.ttl over-query.sparql
 # to get all derivations and add those derived triples to the collection
 #
 over_and_derivations.ttl: over.ttl
-	@echo 2 | figlet
+	@echo '2/3' | figlet
 	@echo making all rdfs derivations...
 	infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
 	@echo exit code $$?
@@ -47,7 +47,7 @@ over_and_derivations.ttl: over.ttl
 # you could also request json, etc.
 #
 output.csv: over_and_derivations.ttl query.sparql
-	@echo 3 | figlet
+	@echo '3/3' | figlet
 	@echo running the final sparql query...
 	sparql --results=csv \
 	   	   --data=over_and_derivations.ttl \
