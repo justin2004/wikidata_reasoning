@@ -1,5 +1,5 @@
 FROM debian:10
-RUN apt-get update && apt-get install -y  default-jre-headless wget
+RUN apt-get update && apt-get install -y  default-jre-headless wget figlet
 RUN apt-get install -y vim-tiny entr make
 
 
@@ -17,7 +17,8 @@ RUN cp /root/.bashrc /home/containeruser/.bashrc && chown $user:$user /home/cont
 USER $user
 WORKDIR /home/$user
 
-RUN wget 'https://apache.osuosl.org/jena/binaries/apache-jena-3.17.0.tar.gz' && tar -xaf apache-jena-3.17.0.tar.gz
+# RUN wget 'https://apache.osuosl.org/jena/binaries/apache-jena-3.17.0.tar.gz' && tar -xaf apache-jena-3.17.0.tar.gz
+RUN wget 'http://archive.apache.org/dist/jena/binaries/apache-jena-3.17.0.tar.gz' && tar -xaf apache-jena-3.17.0.tar.gz
 
 RUN echo 'declare -x PATH=$PATH:/home/containeruser/apache-jena-3.17.0/bin/' >> /home/containeruser/.bashrc
 WORKDIR /mnt
