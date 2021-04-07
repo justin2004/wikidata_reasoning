@@ -32,7 +32,6 @@ docker run --rm -it -v `pwd`:/mnt justin2004/wikidata_reasoning
 
 ### usage
 
-
 then you should find output.csv.
 
 edit the sparql queries and save them and see the results propogate to output.csv.
@@ -49,6 +48,12 @@ president_obama rdf:type human
 which is something that Wikidata does not say explictly but which is deriveable.
 
 read `Makefile` to see what is going on.
+
+### logging
+
+notice in the log output you see:
+0/3, 1/3, 2/3, 3/3 in balloon letters.
+these indicate how far back in the dependency graph (that the makefile encodes) we had to go to produce the `output.csv` file.
 
 
 ### notes
