@@ -8,9 +8,7 @@ PREFIX pq:       <http://www.wikidata.org/prop/qualifier/> # Links qualifier to 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bd: <http://www.bigdata.com/rdf#>
 prefix sch: <https://schema.org/>
-construct { ?s ?p ?o . ?o ?p1 ?o1 }        {
- ?s ?p ?o .
- filter(?s = wd:Q76  ) .
- ?o ?p1 ?o1 .
+construct { ?s wd:P31 wd:Q853614 }        {
+?s wdt:P31 wd:Q853614 .
 }
 

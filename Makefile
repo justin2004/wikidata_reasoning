@@ -39,7 +39,7 @@ over.ttl: ontology.ttl over-query.sparql
 over_and_derivations.ttl: over.ttl
 	@echo '2/3' | figlet
 	@echo making all rdfs derivations...
-	infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
+	JVM_ARGS=-Xmx4G infer --rdfs=ontology.ttl over.ttl > over_and_derivations.ttl 
 	@echo exit code $$?
  
 # finally run the sparql query over all the triples.

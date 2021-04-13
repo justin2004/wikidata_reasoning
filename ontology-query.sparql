@@ -8,12 +8,18 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bd: <http://www.bigdata.com/rdf#>
 prefix sch: <https://schema.org/>
 #select ?s ?sLabel ?p ?pEntityLabel ?o ?oLabel {
-construct {?sPredicate rdfs:subPropertyOf ?o } {
-values ?p { wdt:P1628} .
-?s ?p  ?o .
-?s wikibase:directClaim ?sPredicate .
-filter(isUri(?o)).
-optional {?p ^(wikibase:claim|wikibase:directClaim|wikibase:statementProperty) ?pEntity} .
-SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } .
+construct {?sPredicate rdfs:subPropertyOf ?o .
+           ?class rdfs:subClassOf ?superclass } {
+    {
+        values ?p { wdt:P1628} .
+            ?s ?p  ?o .
+            ?s wikibase:directClaim ?sPredicate .
+            filter(isUri(?o)).
+            optional {?p ^(wikibase:claim|wikibase:directClaim|wikibase:statementProperty) ?pEntity} .
+    }
+    union
+    {
+        ?class wdt:P279 ?superclass .
+    }
 }
 
